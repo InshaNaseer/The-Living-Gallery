@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Volume2, VolumeX, Heart, Star, Lock, Unlock } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import Navigation from "@/components/navigation"
+import { useState, useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Volume2, VolumeX, Heart, Star, Lock, Unlock } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import Navigation from "@/components/navigation";
 
 export default function HomePage() {
-  const [isMuted, setIsMuted] = useState(false)
-  const [scrollY, setScrollY] = useState(0)
-  const [isVisible, setIsVisible] = useState({})
-  const audioRef = useRef<HTMLAudioElement>(null)
+  const [isMuted, setIsMuted] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const [isVisible, setIsVisible] = useState({});
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,32 +28,33 @@ export default function HomePage() {
           setIsVisible((prev) => ({
             ...prev,
             [entry.target.id]: entry.isIntersecting,
-          }))
-        })
+          }));
+        });
       },
-      { threshold: 0.1 },
-    )
+      { threshold: 0.1 }
+    );
 
-    document.querySelectorAll("[id]").forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [])
+    document.querySelectorAll("[id]").forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   const toggleMusic = () => {
-    setIsMuted(!isMuted)
+    setIsMuted(!isMuted);
     if (audioRef.current) {
       if (isMuted) {
-        audioRef.current.play()
+        audioRef.current.play();
       } else {
-        audioRef.current.pause()
+        audioRef.current.pause();
       }
     }
-  }
+  };
 
   const featuredArtworks = [
     {
       id: 1,
       title: "Ayat al-Kursi",
-      description: "The Throne Verse rendered in flowing Thuluth script, a protection and blessing for any home.",
+      description:
+        "The Throne Verse rendered in flowing Thuluth script, a protection and blessing for any home.",
       price: "$180",
       type: "calligraphy",
       image: "/placeholder.svg?height=400&width=300",
@@ -61,7 +62,8 @@ export default function HomePage() {
     {
       id: 2,
       title: "99 Names of Allah",
-      description: "Asma ul-Husna beautifully painted with gold accents, celebrating the divine attributes.",
+      description:
+        "Asma ul-Husna beautifully painted with gold accents, celebrating the divine attributes.",
       price: "$220",
       type: "painting",
       image: "/placeholder.svg?height=400&width=300",
@@ -69,12 +71,13 @@ export default function HomePage() {
     {
       id: 3,
       title: "Surah Al-Fatiha",
-      description: "The Opening chapter of the Quran, painted with reverence and spiritual devotion.",
+      description:
+        "The Opening chapter of the Quran, painted with reverence and spiritual devotion.",
       price: "$195",
       type: "calligraphy",
       image: "/placeholder.svg?height=400&width=300",
     },
-  ]
+  ];
 
   const limitedPieces = [
     {
@@ -90,7 +93,7 @@ export default function HomePage() {
       price: "$350",
       image: "/placeholder.svg?height=300&width=300",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 via-rose-50 to-amber-50">
@@ -215,14 +218,20 @@ export default function HomePage() {
           className="absolute top-6 right-6 z-10 text-red-900 hover:text-amber-900 hover:bg-amber-100/50"
           onClick={toggleMusic}
         >
-          {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+          {isMuted ? (
+            <VolumeX className="h-5 w-5" />
+          ) : (
+            <Volume2 className="h-5 w-5" />
+          )}
         </Button>
 
         <div className="text-center z-10 max-w-4xl px-6 mt-16">
-          <h1 className="font-serif text-5xl md:text-7xl text-amber-900 mb-8 animate-fade-in-up">The Living Gallery</h1>
+          <h1 className="font-serif text-5xl md:text-7xl text-amber-900 mb-8 animate-fade-in-up">
+            The Living Gallery
+          </h1>
           <p className="font-serif text-xl md:text-2xl text-red-900 mb-16 leading-relaxed animate-fade-in-up animation-delay-300">
-            "And it is He who created the heavens and earth in truth. And the day He says, 'Be,' and it is, His word is
-            the truth." - Quran 6:73
+            "And it is He who created the heavens and earth in truth. And the
+            day He says, 'Be,' and it is, His word is the truth." - Quran 6:73
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up animation-delay-600">
             <Link href="/paintings">
@@ -242,14 +251,21 @@ export default function HomePage() {
       {/* Featured Collections Preview */}
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
-          <h2 className="font-serif text-5xl text-amber-900 text-center mb-16">Featured Collections</h2>
+          <h2 className="font-serif text-5xl text-amber-900 text-center mb-16">
+            Featured Collections
+          </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
             {/* Paintings Preview */}
             <div className="text-center">
-              <h3 className="font-serif text-3xl text-red-900 mb-8">Sacred Paintings</h3>
+              <h3 className="font-serif text-3xl text-red-900 mb-8">
+                Sacred Paintings
+              </h3>
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="relative group overflow-hidden rounded-lg">
+                  <div
+                    key={i}
+                    className="relative group overflow-hidden rounded-lg"
+                  >
                     <Image
                       src={`/placeholder.svg?height=200&width=200`}
                       alt={`Painting ${i}`}
@@ -270,10 +286,15 @@ export default function HomePage() {
 
             {/* Calligraphy Preview */}
             <div className="text-center">
-              <h3 className="font-serif text-3xl text-red-900 mb-8">Divine Calligraphy</h3>
+              <h3 className="font-serif text-3xl text-red-900 mb-8">
+                Divine Calligraphy
+              </h3>
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="relative group overflow-hidden rounded-lg">
+                  <div
+                    key={i}
+                    className="relative group overflow-hidden rounded-lg"
+                  >
                     <Image
                       src={`/placeholder.svg?height=200&width=200`}
                       alt={`Calligraphy ${i}`}
@@ -296,15 +317,20 @@ export default function HomePage() {
       </section>
 
       {/* Artist's Soul Section */}
-      <section id="artist-soul" className="py-20 px-6 bg-gradient-to-r from-rose-50 to-rose-50">
+      <section
+        id="artist-soul"
+        className="py-20 px-6 bg-gradient-to-r from-rose-50 to-rose-50"
+      >
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="font-serif text-5xl text-amber-900 mb-12">The Artist's Soul</h2>
+          <h2 className="font-serif text-5xl text-amber-900 mb-12">
+            The Artist's Soul
+          </h2>
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1">
               <div className="relative">
                 <div className="absolute -inset-6 bg-gradient-to-r from-amber-200 to-rose-900 rounded-full opacity-20" />
                 <Image
-                  src="/placeholder.svg?height=300&width=300"
+                  src="/i.jpeg?height=300&width=300"
                   alt="Artist Portrait"
                   width={300}
                   height={300}
@@ -314,16 +340,21 @@ export default function HomePage() {
             </div>
             <div className="flex-1 text-left">
               <p className="text-lg text-slate-600 leading-relaxed font-light mb-6">
-                In the quiet hours before dawn, when the world holds its breath, I find myself drawn to the sacred dance
-                between brush and canvas. Each piece begins as a whispered prayer, a conversation with the divine that
-                unfolds in strokes of gold and whispers of rose.
+                In the quiet hours before dawn, when the world holds its breath,
+                I find myself drawn to the sacred dance between brush and
+                canvas. Each piece begins as a whispered prayer, a conversation
+                with the divine that unfolds in strokes of gold and whispers of
+                rose.
               </p>
               <p className="text-lg text-slate-600 leading-relaxed font-light mb-6">
-                My art is not merely decoration—it is meditation made visible, spirituality given form. Through ancient
-                calligraphy and timeless paintings, I seek to create windows into the soul, spaces where beauty and
-                meaning converge in perfect harmony.
+                My art is not merely decoration—it is meditation made visible,
+                spirituality given form. Through ancient calligraphy and
+                timeless paintings, I seek to create windows into the soul,
+                spaces where beauty and meaning converge in perfect harmony.
               </p>
-              <p className="font-serif text-xl text-red-900 mb-8 italic">— Elena Sage, Founder of The Living Gallery</p>
+              <p className="font-serif text-xl text-red-900 mb-8 italic">
+                — InshaNaseer, Founder of The Living Gallery
+              </p>
               <Link href="/about">
                 <Button className="bg-amber-700 hover:bg-amber-800 text-white px-6 py-3 font-serif">
                   Read Full Story
@@ -335,22 +366,33 @@ export default function HomePage() {
       </section>
 
       {/* Divine Drops - Limited Edition */}
-      <section id="divine-drops" className="py-20 px-6 bg-gradient-to-r from-amber-50 to-rose-50">
+      <section
+        id="divine-drops"
+        className="py-20 px-6 bg-gradient-to-r from-amber-50 to-rose-50"
+      >
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="font-serif text-5xl text-amber-900 mb-8">Divine Drops</h2>
+          <h2 className="font-serif text-5xl text-amber-900 mb-8">
+            Divine Drops
+          </h2>
           <p className="text-xl text-slate-600 mb-16 font-light">
-            Rare treasures, released when the stars align. Some secrets are worth the wait.
+            Rare treasures, released when the stars align. Some secrets are
+            worth the wait.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {limitedPieces.map((piece) => (
-              <Card key={piece.id} className="relative overflow-hidden border-0 shadow-xl bg-white/90 backdrop-blur-sm">
+              <Card
+                key={piece.id}
+                className="relative overflow-hidden border-0 shadow-xl bg-white/90 backdrop-blur-sm"
+              >
                 <div className="relative">
                   <Image
                     src={piece.image || "/placeholder.svg"}
                     alt={piece.title}
                     width={300}
                     height={300}
-                    className={`w-full h-64 object-cover ${piece.isLocked ? "filter blur-sm" : ""}`}
+                    className={`w-full h-64 object-cover ${
+                      piece.isLocked ? "filter blur-sm" : ""
+                    }`}
                   />
                   {piece.isLocked && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black/30">
@@ -362,10 +404,15 @@ export default function HomePage() {
                   )}
                 </div>
                 <div className="p-6">
-                  <h4 className="font-serif text-2xl text-amber-900 mb-4">{piece.title}</h4>
+                  <h4 className="font-serif text-2xl text-amber-900 mb-4">
+                    {piece.title}
+                  </h4>
                   {piece.isLocked ? (
                     <div className="space-y-4">
-                      <Input placeholder="Enter your email to unlock" className="border-amber-200" />
+                      <Input
+                        placeholder="Enter your email to unlock"
+                        className="border-amber-200"
+                      />
                       <Button className="w-full bg-amber-700 hover:bg-amber-800 text-white font-serif">
                         <Unlock className="h-4 w-4 mr-2" />
                         Reveal Sacred Art
@@ -373,7 +420,9 @@ export default function HomePage() {
                     </div>
                   ) : (
                     <div className="space-y-4">
-                      <p className="text-2xl font-serif text-red-900">{piece.price}</p>
+                      <p className="text-2xl font-serif text-red-900">
+                        {piece.price}
+                      </p>
                       <Button className="w-full bg-amber-700 hover:bg-amber-800 text-white font-serif">
                         Add to Collection
                       </Button>
@@ -523,17 +572,20 @@ export default function HomePage() {
               <div className="w-8 h-8 rounded-full bg-gradient-to-r from-amber-200 to-rose-900" />
             </div>
             <div className="text-center md:text-right">
-              <p className="font-serif text-lg text-amber-900 mb-2">The Living Gallery</p>
+              <p className="font-serif text-lg text-amber-900 mb-2">
+                The Living Gallery
+              </p>
               <p className="text-sm text-slate-600">Where art becomes prayer</p>
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-amber-200 text-center">
             <p className="text-sm text-slate-500">
-              © 2024 The Living Gallery. All rights reserved. | Crafted with love and reverence.
+              © 2024 The Living Gallery. All rights reserved. | Crafted with
+              love and reverence.
             </p>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }
