@@ -72,7 +72,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="font-serif text-5xl md:text-6xl text-amber-900 mb-6">
-                Meet InshaNaseer
+                Meet Insha Naseer
               </h1>
               <p className="text-xl text-slate-600 mb-8 leading-relaxed">
                 Artist, Spiritual Seeker, and Guardian of Sacred Traditions
@@ -92,7 +92,7 @@ export default function AboutPage() {
                 perfect submission to Allah.
               </p>
               <p className="font-serif text-xl text-red-900 mb-8 italic">
-                — InshaNaseer, Calligrapher and Artist
+                — Insha Naseer, Calligrapher and Artist
               </p>
               <Link href="/contact">
                 <Button className="bg-amber-800 hover:bg-amber-900 text-white px-8 py-4 text-lg font-serif">
@@ -104,7 +104,7 @@ export default function AboutPage() {
               <div className="absolute -inset-6 bg-gradient-to-r from-amber-200 to-rose-900 rounded-full opacity-20" />
               <Image
                 src="/art.jpeg?height=500&width=500"
-                alt="InshaNaseer - Artist Portrait"
+                alt="Insha Naseer - Artist Portrait"
                 width={500}
                 height={500}
                 className="relative rounded-full shadow-2xl mx-auto"

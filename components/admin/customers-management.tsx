@@ -1,16 +1,33 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Search, Filter, Eye, Edit, Mail, Phone, MapPin, Download, UserPlus, Calendar } from "lucide-react"
+import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Search,
+  Filter,
+  Eye,
+  Edit,
+  Mail,
+  Phone,
+  MapPin,
+  Download,
+  UserPlus,
+  Calendar,
+} from "lucide-react";
 
 export default function CustomersManagement() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [statusFilter, setStatusFilter] = useState("all")
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const customers = [
     {
@@ -91,43 +108,51 @@ export default function CustomersManagement() {
       lastOrder: "2023-12-01",
       favoriteCategory: "Calligraphy",
     },
-  ]
+  ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case "vip":
-        return "bg-purple-100 text-purple-800"
+        return "bg-purple-100 text-purple-800";
       case "active":
-        return "bg-green-100 text-green-800"
+        return "bg-green-100 text-green-800";
       case "new":
-        return "bg-blue-100 text-blue-800"
+        return "bg-blue-100 text-blue-800";
       case "inactive":
-        return "bg-gray-100 text-gray-800"
+        return "bg-gray-100 text-gray-800";
       default:
-        return "bg-gray-100 text-gray-800"
+        return "bg-gray-100 text-gray-800";
     }
-  }
+  };
 
   const filteredCustomers = customers.filter((customer) => {
     const matchesSearch =
       customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.location.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesStatus = statusFilter === "all" || customer.status === statusFilter
+      customer.location.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      statusFilter === "all" || customer.status === statusFilter;
 
-    return matchesSearch && matchesStatus
-  })
+    return matchesSearch && matchesStatus;
+  });
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="font-serif text-2xl text-amber-900">Customers Management</h2>
-          <p className="text-slate-600">Manage your valued customers and their journey</p>
+          <h2 className="font-serif text-2xl text-amber-900">
+            Customers Management
+          </h2>
+          <p className="text-slate-600">
+            Manage your valued customers and their journey
+          </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" className="border-amber-300 text-amber-900 bg-transparent">
+          <Button
+            variant="outline"
+            className="border-amber-300 text-amber-900 bg-transparent"
+          >
             <Download className="h-4 w-4 mr-2" />
             Export
           </Button>
@@ -141,19 +166,27 @@ export default function CustomersManagement() {
       {/* Customer Statistics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card className="p-4 border-0 shadow-lg bg-white/90 backdrop-blur-sm text-center">
-          <p className="text-2xl font-bold text-amber-900">{customers.length}</p>
+          <p className="text-2xl font-bold text-amber-900">
+            {customers.length}
+          </p>
           <p className="text-sm text-slate-600">Total Customers</p>
         </Card>
         <Card className="p-4 border-0 shadow-lg bg-white/90 backdrop-blur-sm text-center">
-          <p className="text-2xl font-bold text-purple-600">{customers.filter((c) => c.status === "vip").length}</p>
+          <p className="text-2xl font-bold text-purple-600">
+            {customers.filter((c) => c.status === "vip").length}
+          </p>
           <p className="text-sm text-slate-600">VIP Customers</p>
         </Card>
         <Card className="p-4 border-0 shadow-lg bg-white/90 backdrop-blur-sm text-center">
-          <p className="text-2xl font-bold text-blue-600">{customers.filter((c) => c.status === "new").length}</p>
+          <p className="text-2xl font-bold text-blue-600">
+            {customers.filter((c) => c.status === "new").length}
+          </p>
           <p className="text-sm text-slate-600">New This Month</p>
         </Card>
         <Card className="p-4 border-0 shadow-lg bg-white/90 backdrop-blur-sm text-center">
-          <p className="text-2xl font-bold text-green-600">{customers.filter((c) => c.status === "active").length}</p>
+          <p className="text-2xl font-bold text-green-600">
+            {customers.filter((c) => c.status === "active").length}
+          </p>
           <p className="text-sm text-slate-600">Active Customers</p>
         </Card>
       </div>
@@ -182,7 +215,10 @@ export default function CustomersManagement() {
               <SelectItem value="inactive">Inactive</SelectItem>
             </SelectContent>
           </Select>
-          <Button variant="outline" className="border-amber-300 text-amber-900 bg-transparent">
+          <Button
+            variant="outline"
+            className="border-amber-300 text-amber-900 bg-transparent"
+          >
             <Filter className="h-4 w-4 mr-2" />
             More Filters
           </Button>
@@ -192,19 +228,34 @@ export default function CustomersManagement() {
       {/* Customers Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredCustomers.map((customer) => (
-          <Card key={customer.id} className="p-6 border-0 shadow-lg bg-white/90 backdrop-blur-sm">
+          <Card
+            key={customer.id}
+            className="p-6 border-0 shadow-lg bg-white/90 backdrop-blur-sm"
+          >
             <div className="flex items-start justify-between mb-4">
               <div>
-                <h3 className="font-serif text-lg text-amber-900 font-medium">{customer.name}</h3>
-                <Badge className={`text-xs mt-1 ${getStatusColor(customer.status)}`}>
+                <h3 className="font-serif text-lg text-amber-900 font-medium">
+                  {customer.name}
+                </h3>
+                <Badge
+                  className={`text-xs mt-1 ${getStatusColor(customer.status)}`}
+                >
                   {customer.status.toUpperCase()}
                 </Badge>
               </div>
               <div className="flex gap-1">
-                <Button variant="ghost" size="sm" className="text-amber-700 hover:text-amber-900">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-amber-700 hover:text-amber-900"
+                >
                   <Eye className="h-4 w-4" />
                 </Button>
-                <Button variant="ghost" size="sm" className="text-blue-700 hover:text-blue-900">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-blue-700 hover:text-blue-900"
+                >
                   <Edit className="h-4 w-4" />
                 </Button>
               </div>
@@ -231,11 +282,15 @@ export default function CustomersManagement() {
 
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div className="text-center p-3 bg-amber-50 rounded-lg">
-                <p className="text-lg font-bold text-amber-900">{customer.totalOrders}</p>
+                <p className="text-lg font-bold text-amber-900">
+                  {customer.totalOrders}
+                </p>
                 <p className="text-xs text-slate-600">Orders</p>
               </div>
               <div className="text-center p-3 bg-green-50 rounded-lg">
-                <p className="text-lg font-bold text-green-900">${customer.totalSpent}</p>
+                <p className="text-lg font-bold text-green-900">
+                  ${customer.totalSpent}
+                </p>
                 <p className="text-xs text-slate-600">Total Spent</p>
               </div>
             </div>
@@ -248,11 +303,13 @@ export default function CustomersManagement() {
             </div>
 
             <div className="mt-4 pt-4 border-t border-amber-200">
-              <p className="text-xs text-slate-500">Last Order: {customer.lastOrder}</p>
+              <p className="text-xs text-slate-500">
+                Last Order: {customer.lastOrder}
+              </p>
             </div>
           </Card>
         ))}
       </div>
     </div>
-  )
+  );
 }

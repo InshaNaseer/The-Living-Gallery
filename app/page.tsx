@@ -353,7 +353,7 @@ export default function HomePage() {
                 spaces where beauty and meaning converge in perfect harmony.
               </p>
               <p className="font-serif text-xl text-red-900 mb-8 italic">
-                — InshaNaseer, Founder of The Living Gallery
+                — Insha Naseer, Founder of The Living Gallery
               </p>
               <Link href="/about">
                 <Button className="bg-amber-700 hover:bg-amber-800 text-white px-6 py-3 font-serif">
